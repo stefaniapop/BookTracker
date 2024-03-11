@@ -1,0 +1,32 @@
+<%- include('./partials/top.ejs'); %>
+
+<div class="container">
+    <header>
+        <%- include('./partials/navbar.ejs'); %>
+    </header>
+
+    <h1>
+        <%= gen.gen %>
+    </h1>
+    
+    <% for(i=0; i < gen.carti.length; i++){ %>
+        <% if(i == 0 || i % 5 == 0) { %>
+            <div class="row">
+        <% } %>
+            <div class="col-xs-6 col-md-3 col-lg-2 py-2">
+                <div class="card h-100">
+                    <a href="/carte/<%= gen.idCarte[i] %>" class="thumbnail">
+                        <img class="img-fluid" src="/uploads/books/<%= gen.carti[i].coperta %>" alt="coperta-<%= gen.carti[i].titlu%>">
+                    </a>
+                    <div class="caption">
+                        <h5><%= gen.carti[i].titlu %></h5>
+                    </div>
+                </div>
+            </div>
+        <% if(i == 4 || i % 5 == 4) { %>
+            </div>
+        <% } %>
+    <% } %>
+</div>
+
+<%- include('./partials/bottom.ejs'); %>

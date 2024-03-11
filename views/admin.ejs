@@ -1,0 +1,42 @@
+<%- include('./partials/top.ejs'); %>
+
+    <div class="container">
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <span class="navbar-brand mb-0 h1"><%= username %></span>
+              <form class="d-flex" method="GET" action="/deconectare">
+                <button class="btn btn-light">Deconectare</button>
+            </form>
+            </div>
+        </nav>
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-genuri-tab" data-bs-toggle="tab" data-bs-target="#nav-genuri" type="button" role="tab" aria-controls="nav-genuri" aria-selected="true">
+           Adăugare genuri literare</button>
+          <button class="nav-link" id="nav-autori-tab" data-bs-toggle="tab" data-bs-target="#nav-autori" type="button" role="tab" aria-controls="nav-autori" aria-selected="false">
+           Adăugare autori</button>
+          <button class="nav-link" id="nav-carti-tab" data-bs-toggle="tab" data-bs-target="#nav-carti" type="button" role="tab" aria-controls="nav-carti" aria-selected="false">
+           Adăugare cărți</button>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-genuri" role="tabpanel" aria-labelledby="nav-genuri-tab">
+            <%- include('./partials/adaugaGenuri.ejs', {genuri: genuri}); %>
+        </div>
+        <div class="tab-pane fade" id="nav-autori" role="tabpanel" aria-labelledby="nav-autori-tab">
+            <%- include('./partials/adaugaAutori.ejs', {autori: autori}); %>
+        </div>
+        <div class="tab-pane fade" id="nav-carti" role="tabpanel" aria-labelledby="nav-carti-tab">
+            <%- include('./partials/adaugaCarti.ejs', {carti: carti}); %>
+        </div>
+      </div>       
+</div>
+</div>
+    <script>
+        function mySubmitFunction(e) {
+            e.preventDefault();
+            return false;
+        }
+    </script>
+<%- include('./partials/bottom.ejs'); %>

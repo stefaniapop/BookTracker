@@ -1,0 +1,33 @@
+<%- include('./partials/top.ejs'); %>
+
+<div class="container">
+    <header>
+        <%- include('./partials/navbar.ejs'); %>
+    </header>
+
+    <div>
+        <% if( typeof rezultate !='undefined' ){ %>
+            <% for (let i=0; i < rezultate.length; i++) { %>
+        <div class="row">
+            <div class="col-sm-5 col-lg-2 py-2">
+              <div class="thumbnail">
+                <a href="/carte/<%= rezultate[i].id_carte%>"><img class="card-img-top img-fluid" src="/uploads/books/<%= rezultate[i].coperta%>" alt="Card image cap" /></a>
+              </div>
+            </div>
+            <div class="col-sm-7 col-lg-10 py-2">
+              <div class="caption">
+                <a href="/carte/<%= rezultate[i].id_carte%>" class="text-dark"><h3><%= rezultate[i].titlu %></h3></a>
+                <p><%= rezultate[i].nume_autor %></p>
+                <p><%= rezultate[i].descriere %></p>
+              </div>
+
+              
+            </div>
+        </div>
+        <% } %>
+        <% } %>
+        
+    </div>
+</div>
+
+<%- include('./partials/bottom.ejs'); %>
