@@ -1,0 +1,43 @@
+<%- include('./partials/top.ejs'); %>
+
+  <div class="container">
+  <header>
+    <%- include('./partials/navbar.ejs'); %>
+  </header>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Coperta</th>
+        <th scope="col">Titlu</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Raft</th>
+        <th scope="col">Data adăugării</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(let i = 0; i < carti.length; i++) { %>
+            <tr>
+                <td class="col-sm-3 col-lg-1 py-2"><a href="/carte/<%= carti[i].id_carte%>">
+                    <img class="card-img-top img-fluid" src="/uploads/books/<%= carti[i].coperta%>" alt="<%= carti[i].titlu %>" />
+                </a></td>
+                <td><%= carti[i].titlu %></td>
+                <td><%= carti[i].nume_autor %></td>
+                <td><%= carti[i].nume_eticheta %></td>
+                <td><%= (carti[i].data_adaugare).slice(0,10) %></td>
+                <td>
+                    <form method="POST" action="stergeCarte">
+                      <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= carti[i].id_carte %>"></input>
+                      <input type="text" class="d-none" name="id_eticheta" id="id_eticheta" value="<%= carti[i].id_eticheta %>"></input>
+                        <button class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="right" title="Cartea va fi ștearsă din categoria în care se află, inclusiv progresul lecturii">Șterge</button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+    </tbody>
+  </table>
+
+  </div>
+
+<%- include('./partials/bottom.ejs'); %>

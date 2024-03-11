@@ -1,0 +1,110 @@
+<%- include('./partials/top.ejs'); %>
+
+  <div class="container">
+  <header>
+    <%- include('./partials/navbar.ejs', { username: username }); %>
+  </header>
+  <div class="row">
+    <div class="col-2 py-2">
+      <h4>Citesc acum</h4>
+      <% if( typeof lectura !='undefined' ){ %>
+        <% for (let i=0; i < lectura.length; i++) { %>
+          <div>
+            <div class="thumbnail">
+                <a href="/carte/<%= lectura[i].id_carte%>"><img class="card-img-top img-fluid" src="/uploads/books/<%= lectura[i].coperta%>" alt="Card image cap" /></a>
+            </div>
+            <div class="caption">
+                <a href="/carte/<%= lectura[i].id_carte%>" class="text-dark"><h3><%= lectura[i].titlu %></h3></a>
+            </div>
+            <% if (lectura[i].pagina_curenta != null && lectura[i].pagina_curenta != 0) {%>
+              <% let progres = (lectura[i].pagina_curenta * 100) / lectura[i].nr_pagini %>
+                <progress max="100" value="<%= progres %>"> <%= progres %> </progress>
+                <div><p><%= lectura[i].pagina_curenta %> / <%= lectura[i].nr_pagini %> (<%= parseInt(progres) %>%) </p></div>
+            <% } %>
+
+            <div name="InputNrPagina" style="display:none;">
+              <form method="POST" action="/actualizarePagina">
+                <div class="form-group">
+                  <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= lectura[i].id_carte %>"></input>
+                <label>Numărul paginii</label><br>
+                <input type="text" class="form-control" id="pagina" name="pagina">
+
+                <button class="btn btn-light" type="submit">Salvare</button>
+                </div>
+              </form>
+
+              <form method="POST" action="/finalCarte">
+                <div class="form-group">
+                  <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= lectura[i].id_carte %>"></input>
+                  <button class="btn btn-light" type="submit">Am terminat de citit!</button>
+                </div>
+              </form>
+
+            </div>
+            <% param = i %>
+            
+              <button type="button" class="btn btn-light" onclick="showDiv('<%= param %>')">Modifică Progres</button>
+            
+
+          </div>
+        <% } %>
+    <% } %>
+    
+    </div>
+    <div class="col-10 py-2">
+    <h4>Descoperă</h4>
+
+    <% let k = 0%>
+    <% for (let i=0; i < carti.length; i++) {%>
+      <% if(i === 0 || i % 4 === 0) { %>
+        <div class="row">
+      <% } %>
+      <% if(carti.length - i < 4) { %>
+        <% k = carti.length - i %>
+      <% } else {%>
+        <% k = 4 %>
+      <% } %>
+      <% for (let j = i; j < i + k; j++) {%>
+          <div class="col-sm-6 col-lg-3 py-2">
+            <div class="card h-100">
+              <a href="/carte/<%= carti[j].id_carte%>">
+                <img class="card-img-top img-fluid" src="/uploads/books/<%= carti[j].coperta%>" alt="<%= carti[j].titlu %>" />
+              </a>
+              <div class="card-body">
+          
+                <a href="/carte/<%= carti[j].id_carte%>" class="text-dark">
+                <h5 class="card-title">
+                  <%= carti[j].titlu %>
+                </h5>
+                </a>
+                <h6 class="card-subtitle mb-2">Autor</h6>
+                <p class="card-text">
+                  <%= carti[j].nume_autor %>
+                </p>
+                <h6 class="card-subtitle mb-2">Descriere</h6>
+                <p class="card-text">
+                  <%= carti[j].descriere %>
+                </p>
+                
+              </div>
+            </div>
+          </div>
+      <% } %>
+      <% i = i + 3 %>
+      </div>
+    <% } %>
+  </div>
+  </div>
+  </div>
+  <script>
+    function showDiv(i) {
+      document.getElementsByName('InputNrPagina')[i].style.display = "block";
+    }
+  </script>
+  <script>
+    function mySubmitFunction(e) {
+        e.preventDefault();
+        return false;
+    }
+</script>
+  <%- include('./partials/bottom.ejs'); %>

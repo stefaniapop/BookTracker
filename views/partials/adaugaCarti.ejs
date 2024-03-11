@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-6 py-2">
+        <h2>Adăugare cărți</h2>
+
+        <form action="/adaugareCarti" method="POST" role="form" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="ISBN" name="isbn">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Titlu" name="titlu">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Autor" name="autor">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Număr Pagini" name="nrPagini">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Descriere" name="descriere">
+            </div>
+            <div class="form-group">
+                <label for="formFile" class="form-label">Imagine copertă</label>
+                <input type="file" placeholder="Imagine copertă" name="coperta" id="formFile">
+            </div>
+            <h4>Genuri</h4>
+            <ul class="genuri" style="list-style: none" name="genuri">
+
+                <% for (let i=0; i < genuri.length; i++) {%>
+                    <li class="gen">
+                        <input class="form-check-input" type="checkbox" id="<%= genuri[i].gen %>" name="genCheckbox"
+                            value="<%= genuri[i].gen %>">
+                        <span>
+                            <%= genuri[i].gen %>
+                        </span>
+                    </li>
+                <% } %>
+            </ul>
+            <br>
+            <button class="btn btn-outline-success" id="btnAdaugareCarti" type="submit">Adaugă</button>
+            <div id="selectate"></div>
+        </form>
+    </div>
+    <div class="col-6 py-2">
+        <div class="mh-100 overflow-auto" style="height: 600px;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Copertă</th>
+                        <th scope="col">Titlu</th>
+                        <th scope="col">Cod ISBN</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Numărul de pagini</th>
+                        <th scope="col">Descriere</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (let i=0; i < carti.length; i++) {%>
+                        <tr>
+                            <td class="col-sm-3 col-lg-1 py-2 mh-100 overflow-auto">
+                                <img class="card-img-top img-fluid"
+                                     src="/uploads/books/<%= carti[i].coperta%>" 
+                                     alt="<%= carti[i].titlu %>" />
+                            </td>
+                            <td>
+                                <%= carti[i].titlu %>
+                            </td>
+                            <td>
+                                <%= carti[i].isbn_carte %>
+                            </td>
+                            <td>
+                                <%= carti[i].nume_autor %>
+                            </td>
+                            <td>
+                                <%= carti[i].nr_pagini %>
+                            </td>
+                            <td><div class="mh-50 overflow-auto" style="height: 200px;">
+                                <%= carti[i].descriere %>
+                            </div>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

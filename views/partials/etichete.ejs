@@ -1,0 +1,126 @@
+<div class="btn-group">
+    <form method="POST" action="/toRead" >
+      <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+        
+       <% if(toRead.value == true) {%>
+        <button type="submit" class="btn btn-success">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
+              </svg>
+            Vreau să citesc
+        </button>
+        
+        <% } else { %> 
+            <button type="submit" class="btn btn-outline-success">
+                Vreau să citesc
+            </button>
+        <% } %>
+           
+        
+        </form>
+      </form>
+      
+   
+    <div class="dropdown-menu dropdown-menu-right">
+        <% if(toRead.value == true) {%>
+            <form method="POST" action="/stergeToRead">
+                <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                <button class="dropdown-item" type="submit">Nu vreau să citesc</button>
+            </form>
+        <% } %>
+        
+        <% if(read.value == true) {%>
+            <form method="POST" action="/stergeRead">
+                <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                <button class="dropdown-item" type="submit">Nu am citit</button>
+            </form>
+        <% } %>
+        <% if(read.value == false) {%>
+            <form method="POST" action="/read">
+                <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                <button class="dropdown-item" type="submit">Am citit</button>
+            </form>
+        <% } %>
+
+        <% if(reading.value == true) {%>
+            <form method="POST" action="/stergeReading">
+                <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                <button class="dropdown-item" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                        <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
+                    </svg>
+                    Citesc acum
+                </button>
+            </form>
+        <% } %>
+        <% if(reading.value == false) {%>
+            <form method="POST" action="/reading">
+                <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                <button class="dropdown-item" type="submit">Citesc acum</button>
+            </form>
+        <% } %>
+    </div>
+
+    <div class="dropdown">
+        <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          
+            <% if(toRead.value == true) {%>
+                <li><a class="dropdown-item" href="#"></a>
+                <form method="POST" action="/stergeToRead">
+                    <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                    <button class="dropdown-item" type="submit">Nu vreau să citesc</button>
+                </form>
+            </li>
+            <% } %>
+
+            <% if(read.value == true) {%>
+                <li><a class="dropdown-item" href="#"></a>
+                <form method="POST" action="/stergeRead">
+                    <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                    <button class="dropdown-item" type="submit">Nu am citit</button>
+                </form>
+            </li>
+            <% } %>
+            
+
+            <% if(read.value == false) {%>
+                <li><a class="dropdown-item" href="#"></a>
+                <form method="POST" action="/read">
+                    <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                    <button class="dropdown-item" type="submit">Am citit</button>
+                </form>
+            </li>
+            <% } %>
+            
+            <% if(reading.value == true) {%>
+                <li><a class="dropdown-item" href="#"></a>
+                <form method="POST" action="/stergeReading">
+                    <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                    <button class="dropdown-item" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                            <path d="M13.485 1.431a1.473 1.473 0 0 1 2.104 2.062l-7.84 9.801a1.473 1.473 0 0 1-2.12.04L.431 8.138a1.473 1.473 0 0 1 2.084-2.083l4.111 4.112 6.82-8.69a.486.486 0 0 1 .04-.045z"/>
+                        </svg>
+                        Citesc acum
+                    </button>
+                </form>
+            </li>
+            <% } %>
+
+            <% if(reading.value == false) {%>
+                <li><a class="dropdown-item" href="#"></a>
+                <form method="POST" action="/reading">
+                    <input type="text" class="d-none" name="id_carte" id="id_carte" value="<%= id_carte %>"></input>
+                    <button class="dropdown-item" type="submit">Citesc acum</button>
+                </form>
+            </li>
+            <% } %>
+
+        </ul>
+      </div>
+</div>
+
+
+
+

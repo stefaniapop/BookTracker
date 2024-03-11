@@ -1,0 +1,38 @@
+<%- include('./partials/top.ejs'); %>
+
+  <div class="container">
+    <div class="row">
+<div class="col-6 py-3">
+  <h1>Creare cont</h1>
+
+  <form action="/register" method="POST">
+    <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Nume de utilizator" name="reg_username">
+  </div>
+    <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Email" name="reg_email">
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" placeholder="Parola" name="reg_password">
+    </div>
+    <button class="btn btn-secondary" type="submit">Creare cont</button>
+
+  </form>
+</div>
+<div class="col-6 py-3">
+  <h1>Conectare</h1>
+
+  <form action="/signin" method="POST">
+    <div class="mb-3">
+    <input type="email" class="form-control" placeholder="Email" name="email">
+    </div>
+    <div class="mb-3">
+    <input type="password" class="form-control" placeholder="Parola" name="password">
+  </div>
+    <button class="btn btn-secondary" type="submit">Conectare</button>
+  </form>
+</div>
+
+</div>
+  </div>
+<%- include('./partials/bottom.ejs'); %>
